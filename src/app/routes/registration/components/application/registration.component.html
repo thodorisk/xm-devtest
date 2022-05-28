@@ -1,11 +1,8 @@
 <ng-container [formGroup]="registrationForm">
   <ng-container *ngFor="let formField of registrationFormFields">
-    <label>{{formField.label}}</label>
-    <ng-container [ngSwitch]="formField.type">
-      <input *ngSwitchCase="'text'" type="text" [formControlName]="formField.name">
-      <input *ngSwitchCase="'email'" type="email" [formControlName]="formField.name">
-      <input *ngSwitchCase="'phone'" type="phone" [formControlName]="formField.name">
-      <input *ngSwitchCase="'password'" type="password" [formControlName]="formField.name">
-    </ng-container>
+    <app-registration-form-field [form]="registrationForm" [formField]="formField"></app-registration-form-field>
   </ng-container>
+
+  <pre>{{registrationForm.valid | json}}</pre>
+  <pre>{{registrationForm.value | json}}</pre>
 </ng-container>

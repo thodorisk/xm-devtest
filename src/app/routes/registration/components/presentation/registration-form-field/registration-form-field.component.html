@@ -1,0 +1,9 @@
+<ng-container [formGroup]="form">
+  <label>{{formField.label}}</label>
+  <ng-container [ngSwitch]="formField.type">
+    <input *ngSwitchCase="'text'" type="text" [formControlName]="formField.name">
+    <input *ngSwitchCase="'email'" type="email" [formControlName]="formField.name">
+    <input *ngSwitchCase="'phone'" type="phone" [formControlName]="formField.name">
+    <input *ngSwitchCase="'password'" type="password" [formControlName]="formField.name">
+  </ng-container>
+</ng-container>
