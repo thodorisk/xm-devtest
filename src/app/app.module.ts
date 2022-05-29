@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { FakeBackendProvider } from './api/registration/interceptors/fake-backend.interceptor';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [FakeBackendProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

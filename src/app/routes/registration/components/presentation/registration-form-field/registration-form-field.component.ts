@@ -11,4 +11,6 @@ import { RegistrationFieldSrvDTO } from '../../../../../api/registration/interfa
 export class RegistrationFormFieldComponent {
   @Input() formField!: RegistrationFieldSrvDTO;
   @Input() form!: FormGroup;
+
+  showPassword: boolean = false;
 }

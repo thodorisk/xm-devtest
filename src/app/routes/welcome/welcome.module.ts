@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MaterialModule } from '../../shared/modules/material.module';
 import { WelcomeComponent } from './components/presentation/welcome.component';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 
@@ -9,6 +10,7 @@ import { WelcomeRoutingModule } from './welcome-routing.module';
   ],
   imports: [
     CommonModule,
+    MaterialModule,
     WelcomeRoutingModule
   ],
   providers: []

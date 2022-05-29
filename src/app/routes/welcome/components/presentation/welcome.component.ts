@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistrationRequest } from '../../../../api/registration/interfaces/registration-api.interface';
 
@@ -6,12 +6,12 @@ import { RegistrationRequest } from '../../../../api/registration/interfaces/reg
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WelcomeComponent implements OnInit {
   userData!: RegistrationRequest;
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userData = history.state.data;
+  }
 }

@@ -1,1 +1,13 @@
-<p>welcome works!</p>
+<div class="welcome-container">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Below you can see your registration details.</mat-card-title>
+      <mat-card-subtitle>Note: Password is not visible for security reasons.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p *ngFor="let field of userData | keyvalue" class="field-info">
+        <strong>{{field.key}}</strong>: <strong>{{field.value}}</strong>
+      </p>
+    </mat-card-content>
+  </mat-card>
+</div>

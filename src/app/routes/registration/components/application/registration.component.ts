@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidatorFn } from '@angular/forms';
 import { map } from 'rxjs';
 import { maxLengthValidatorWithMessage, minLengthValidatorWithMessage, patternValidatorWithMessage, requiredValidatorWithMessage } from '../../../../shared/helpers/validators-helper';
 import { RegistrationFieldDTO, RegistrationFieldSrvDTO, RegistrationRequest } from '../../../../api/registration/interfaces/registration-api.interface';
 import { RegistrationApiService } from '../../../../api/registration/services/registration-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +16,7 @@ export class RegistrationComponent implements OnInit {
   registrationFormFields!: RegistrationFieldDTO[];
   userData: RegistrationRequest = {};
 
-  constructor(private formBuilder: FormBuilder, private apiService: RegistrationApiService) { }
+  constructor(private formBuilder: FormBuilder, private apiService: RegistrationApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.initializeRegistrationFormData();
@@ -29,7 +30,6 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  // todo possibly we can better map the srv interface to our own based on our client needs. To be done in the communication layer to reduce complexity here and follow DRY principle.
   private mapRegistrationFieldSrvDtoToClientDto(formData: RegistrationFieldSrvDTO[]): RegistrationFieldDTO[] {
     return formData.map((data) => {
       return {
@@ -64,5 +64,9 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  submitForm(): void { }
+  submitForm(): void {
+    this.apiService.register(this.registrationForm.value).subscribe((response) => {
+      this.router.navigate(['welcome'], { state: { data: response }});
+    })
+  }
 }
