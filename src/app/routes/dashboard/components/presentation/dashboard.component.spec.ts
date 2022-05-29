@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MaterialModule } from 'src/app/shared/modules/material.module';
 
 import { DashboardComponent } from './dashboard.component';
 
@@ -8,6 +9,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [MaterialModule],
       declarations: [ DashboardComponent ]
     })
     .compileComponents();
@@ -19,7 +21,7 @@ describe('DashboardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create DashboardComponent', () => {
     expect(component).toBeTruthy();
   });
 });

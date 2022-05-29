@@ -1,8 +1,12 @@
 <div class="welcome-container">
   <mat-card class="card">
-    <mat-card-header>
+    <mat-card-header *ngIf="userData">
       <mat-card-title>Below you can see your registration details.</mat-card-title>
       <mat-card-subtitle>Note: Password is not visible for security reasons.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-header *ngIf="!userData">
+      <mat-card-title>No registration details available!</mat-card-title>
+      <mat-card-subtitle>Note for the dev: Guard appropriately this route! :)</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p *ngFor="let field of userData | keyvalue" class="field-info">
