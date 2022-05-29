@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { RegistrationRequest } from '../../../../api/registration/interfaces/registration-api.interface';
 
 @Component({
   selector: 'app-welcome',
@@ -7,10 +9,9 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.ShadowDom
 })
 export class WelcomeComponent implements OnInit {
+  userData!: RegistrationRequest;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

@@ -1,15 +1,10 @@
-.registration-container {
+.dashboard-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 
-  .form {
-    display: block;
+  .btn {
     margin: 0 16px;
-
-    .form-field {
-      display: block;
-    }
   }
 }

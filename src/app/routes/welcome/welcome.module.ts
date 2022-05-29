@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { WelcomeComponent } from './components/application/welcome.component';
+import { WelcomeComponent } from './components/presentation/welcome.component';
 import { WelcomeRoutingModule } from './welcome-routing.module';
 
 @NgModule({
@@ -13,4 +13,4 @@ import { WelcomeRoutingModule } from './welcome-routing.module';
   ],
   providers: []
 })
-export class AppModule { }
+export class WelcomeModule { }

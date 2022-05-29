@@ -1,18 +1,18 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { map } from 'rxjs';
-import { RegistrationFieldDTO, RegistrationFieldSrvDTO } from '../../../../api/registration/interfaces/registration-api.interface';
+import { RegistrationFieldDTO, RegistrationFieldSrvDTO, RegistrationRequest } from '../../../../api/registration/interfaces/registration-api.interface';
 import { RegistrationApiService } from '../../../../api/registration/services/registration-api.service';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class RegistrationComponent implements OnInit {
   registrationForm!: FormGroup;
   registrationFormFields!: RegistrationFieldDTO[];
+  userData: RegistrationRequest = {};
 
   constructor(private formBuilder: FormBuilder, private apiService: RegistrationApiService) { }
 
@@ -42,30 +42,30 @@ export class RegistrationComponent implements OnInit {
     for (const field of fields) {
       const validators: ValidatorFn[] = [];
 
-      field.validations.forEach((validation) => {
+      const x = field.validations.map((validation) => {
         if (field.required) {
           validators.push(Validators.required);
         }
 
-        switch (validation.name) {
-          case 'minlength':
-            validators.push(Validators.min(+validation.value));
-            break;
-          case 'maxlength':
-            validators.push(Validators.max(+validation.value));
-            break;
-          case 'regex':
-            validators.push(Validators.pattern(validation.value.toString()));
-            break;
-          default:
-            break;
+        if (validation.name === 'minlength' && typeof validation.value === 'number') {
+          validators.push(Validators.minLength(validation.value));
         }
 
-        this.registrationForm.addControl(
-          field.name,
-          this.formBuilder.control(field.value, validators)
-        );
+        else if (validation.name === 'maxlength' && typeof validation.value === 'number') {
+          validators.push(Validators.maxLength(validation.value));
+        }
+
+        else if (validation.name === 'regex' && typeof validation.value === 'string') {
+          validators.push(Validators.pattern(validation.value));
+        }
       })
+
+      this.registrationForm.addControl(
+        field.name,
+        this.formBuilder.control(field.value, validators)
+      );
     }
   }
+
+  submitForm(): void {}
 }

@@ -1,8 +1,14 @@
-<ng-container [formGroup]="registrationForm">
-  <ng-container *ngFor="let formField of registrationFormFields">
-    <app-registration-form-field [form]="registrationForm" [formField]="formField"></app-registration-form-field>
-  </ng-container>
-
-  <pre>{{registrationForm.valid | json}}</pre>
-  <pre>{{registrationForm.value | json}}</pre>
-</ng-container>
+<div class="registration-container">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Please fill in the registration form.</mat-card-title>
+      <mat-card-subtitle>When you finish click "submit" to complete the registration.</mat-card-subtitle>
+    </mat-card-header>
+    <form class="form" [formGroup]="registrationForm" (ngSubmit)="submitForm()">
+      <ng-container *ngFor="let formField of registrationFormFields">
+        <app-registration-form-field class="form-field" [form]="registrationForm" [formField]="formField"></app-registration-form-field>
+      </ng-container>
+      <button mat-flat-button color="primary" type="submit" [disabled]="!registrationForm.valid" routerLink="/welcome">Submit</button>
+    </form>
+  </mat-card>
+</div>

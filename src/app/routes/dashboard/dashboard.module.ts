@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '../../shared/modules/material.module';
-import { DashboardComponent } from './components/application/dashboard.component';
+import { DashboardComponent } from './components/presentation/dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
 @NgModule({

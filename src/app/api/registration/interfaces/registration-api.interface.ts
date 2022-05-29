@@ -21,3 +21,7 @@ export interface FieldValidationSrvDTO {
   message: string;
   value: string | number;
 }
+
+export interface RegistrationRequest {
+  [fieldName: string]: string;
+}

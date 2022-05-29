@@ -102,11 +102,6 @@
       "required": true,
       "validations": [
         {
-          "name": "regex",
-          "message": "Only numbers are allowed.",
-          "value": "^[0-9]+$"
-        },
-        {
           "name": "maxlength",
           "message": "Must be less than 15 characters.",
           "value": 14
