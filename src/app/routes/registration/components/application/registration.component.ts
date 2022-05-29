@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { map } from 'rxjs';
+import { maxLengthValidatorWithMessage, minLengthValidatorWithMessage, patternValidatorWithMessage, requiredValidatorWithMessage } from '../../../../shared/helpers/validators-helper';
 import { RegistrationFieldDTO, RegistrationFieldSrvDTO, RegistrationRequest } from '../../../../api/registration/interfaces/registration-api.interface';
 import { RegistrationApiService } from '../../../../api/registration/services/registration-api.service';
 
@@ -42,21 +43,17 @@ export class RegistrationComponent implements OnInit {
     for (const field of fields) {
       const validators: ValidatorFn[] = [];
 
-      const x = field.validations.map((validation) => {
+      field.validations.forEach((validation) => {
         if (field.required) {
-          validators.push(Validators.required);
+          validators.push(requiredValidatorWithMessage(`${field.label} is required`));
         }
 
         if (validation.name === 'minlength' && typeof validation.value === 'number') {
-          validators.push(Validators.minLength(validation.value));
-        }
-
-        else if (validation.name === 'maxlength' && typeof validation.value === 'number') {
-          validators.push(Validators.maxLength(validation.value));
-        }
-
-        else if (validation.name === 'regex' && typeof validation.value === 'string') {
-          validators.push(Validators.pattern(validation.value));
+          validators.push(minLengthValidatorWithMessage(validation.value, validation.message));
+        } else if (validation.name === 'maxlength' && typeof validation.value === 'number') {
+          validators.push(maxLengthValidatorWithMessage(validation.value, validation.message));
+        } else if (validation.name === 'regex' && typeof validation.value === 'string') {
+          validators.push(patternValidatorWithMessage(validation.value, validation.message));
         }
       })
 
@@ -67,5 +64,5 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  submitForm(): void {}
+  submitForm(): void { }
 }

@@ -3,18 +3,22 @@
       <mat-form-field *ngSwitchCase="'text'">
         <mat-label>{{formField.label}}</mat-label>
         <input matInput type="text" [formControlName]="formField.name" >
+        <mat-error *ngIf="form.get(formField.name)?.invalid">{{ form.get(formField.name)?.errors?.['message'] }}</mat-error>
       </mat-form-field>
       <mat-form-field *ngSwitchCase="'email'">
         <mat-label>{{formField.label}}</mat-label>
         <input matInput type="email" [formControlName]="formField.name">
+        <mat-error *ngIf="form.get(formField.name)?.invalid">{{ form.get(formField.name)?.errors?.['message'] }}</mat-error>
       </mat-form-field>
       <mat-form-field *ngSwitchCase="'phone'">
         <mat-label>{{formField.label}}</mat-label>
         <input matInput type="tel" [formControlName]="formField.name">
+        <mat-error *ngIf="form.get(formField.name)?.invalid">{{ form.get(formField.name)?.errors?.['message'] }}</mat-error>
       </mat-form-field>
       <mat-form-field *ngSwitchCase="'password'">
         <mat-label>{{formField.label}}</mat-label>
         <input matInput type="password" [formControlName]="formField.name">
+        <mat-error *ngIf="form.get(formField.name)?.invalid">{{ form.get(formField.name)?.errors?.['message'] }}</mat-error>
       </mat-form-field>
     </ng-container>
 </ng-container>

@@ -9,7 +9,7 @@ export interface RegistrationFieldSrvDTO {
 }
 
 export interface RegistrationFormJsonData {
-  registrationFormControls: RegistrationFieldSrvDTO[]
+  data: RegistrationFieldSrvDTO[]
 }
 
 export interface RegistrationFieldDTO extends RegistrationFieldSrvDTO {

@@ -11,6 +11,6 @@ export class RegistrationApiService {
   constructor(private httpClient: HttpClient) { }
 
   public getRegistrationFormControls(): Observable<RegistrationFieldSrvDTO[]> {
-    return this.httpClient.get<RegistrationFormJsonData>('/assets/registrationFormData.json').pipe(map((data: RegistrationFormJsonData) => data.registrationFormControls));
+    return this.httpClient.get<RegistrationFormJsonData>('/assets/registrationFieldsMockData.json').pipe(map((response: RegistrationFormJsonData) => response.data));
   }
 }
